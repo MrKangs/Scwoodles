@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scwoodles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="level-selection">
+        <h1>Welcome to the Scwoodles! Get ready with your Multiplication</h1>
+        <p>Select a level</p>
+        <div class="button-container">
+            <button onclick="startGame(1)">Level 1: Count the Boxes</button>
+            <button onclick="startGame(2)">Level 2: Multiplication Adventure Time</button>
+            <button onclick="startGame(3)">Level 3: Ultimate Test</button>
+        </div>
+    </div>
+
+    <div id="game">
+        <p id="question"></p>
+        <div id="boxes-container"></div>
+        <div id="game-board"></div>
+        <input type="number" id="answer" placeholder="Enter your answer">
+        <button class="submit-button" onclick="submitAnswer()">Submit</button>
+        <div id="dice-section">
+            <button class="dice-button" onclick="rollDice()">Roll Dice</button>
+            <div id="dice-animation">🎲</div>
+        </div>
+        <p id="feedback"></p>
+        <p id="progress"></p>
+    </div>
+
+    <div id="end-screen">
+        <h2>Game Completed!</h2>
+        <p id="final-score"></p>
+        <div class="button-container">
+            <button onclick="playAgain()">Play Again</button>
+            <button onclick="goBack()">Back to Main Menu</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
