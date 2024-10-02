@@ -5,12 +5,17 @@ let correctAnswersCount = 0;
 let userPosition = 1; // for Level 2
 let diceRolling = false;
 let correctAnswers = false;
+let questionLimit = 2;
+let counter = 10;
+let boardLimit = 200;
 
 function startGame(selectedLevel) {
     level = selectedLevel;
+    counter = 0;
     currentQuestion = 0;
     correctAnswersCount = 0;
     correctAnswers = false;
+    boardLimit = 200;
     document.getElementById("game").style.display = "block";
     document.getElementById("end-screen").style.display = "none";
     document.getElementById("level-selection").style.display = "none";
@@ -62,9 +67,14 @@ function drawBoxes(horizontal, vertical) {
 
 function submitAnswer() {
     const userAnswer = parseInt(document.getElementById("answer").value);
+    counter++;
     if (userAnswer === answer) {
         correctAnswersCount++;
         correctAnswers = true;
+        if (questionLimit == counter) {
+            document.getElementById("answer").value = ""; // Clear the answer input
+            return endGame();
+        }
         document.getElementById("feedback").textContent = "Correct!";
         if (level === 2) {
             document.getElementById("dice-section").style.display = "block"; // Show dice button
@@ -106,7 +116,10 @@ function rollDice() {
 
 function moveForward(diceRoll) {
     userPosition += diceRoll;
-    if (userPosition > 200) userPosition = 200; // Cap the position at 200
+    if (userPosition > boardLimit) {
+        userPosition = boardLimit; // Cap the position at boardLimit
+        endGame();
+    }
     drawBoard();
 }
 
@@ -120,7 +133,7 @@ function drawBoard() {
     const board = document.getElementById("game-board");
     board.innerHTML = "";
 
-    for (let i = 1; i <= 200; i++) {
+    for (let i = 1; i <= boardLimit; i++) {
         const cell = document.createElement("div");
         cell.classList.add("cell");
 
@@ -138,7 +151,7 @@ function drawBoard() {
 function endGame() {
     document.getElementById("game").style.display = "none";
     document.getElementById("end-screen").style.display = "block";
-    document.getElementById("final-score").textContent = `You answered ${correctAnswers} questions correctly!`;
+    document.getElementById("final-score").textContent = `You answered ${correctAnswersCount} questions correctly!`;
 }
 
 function playAgain() {
