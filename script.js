@@ -5,7 +5,7 @@ let correctAnswersCount = 0;
 let userPosition = 1; // for Level 2
 let diceRolling = false;
 let correctAnswers = false;
-let questionLimit = 10;
+let questionLimit = 20;
 let counter = 10;
 let boardLimit = 200;
 
