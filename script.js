@@ -71,7 +71,7 @@ function submitAnswer() {
     if (userAnswer === answer) {
         correctAnswersCount++;
         correctAnswers = true;
-        if (questionLimit == counter) {
+        if (questionLimit == counter && level != 2) {
             document.getElementById("answer").value = ""; // Clear the answer input
             return endGame();
         }
