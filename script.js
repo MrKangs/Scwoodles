@@ -22,7 +22,7 @@ function startGame(selectedLevel) {
     document.getElementById("progress").textContent = "";
     document.getElementById("dice-section").style.display = "none"; // Hide dice until needed
 
-    if (level === 2) {
+    if (level === 2 || level === 4 || level === 6) {
         userPosition = 1;
         drawBoard();
     }
@@ -31,19 +31,52 @@ function startGame(selectedLevel) {
 }
 
 function nextQuestion() {
-    firstNumber = Math.floor(Math.random() * 10) + 1;
-    secondNumber = Math.floor(Math.random() * 10) + 1;
-    answer = firstNumber * secondNumber;
-
     if (level === 1) {
+        firstNumber = Math.floor(Math.random() * 10) + 1;
+        secondNumber = Math.floor(Math.random() * 10) + 1;
+        answer = firstNumber * secondNumber;
         const questionText = `There are ${firstNumber} boxes horizontally and ${secondNumber} boxes vertically. How many boxes are there in total?`;
         document.getElementById("question").textContent = questionText;
         drawBoxes(firstNumber, secondNumber);
     } else if (level === 2) {
+        firstNumber = Math.floor(Math.random() * 10) + 1;
+        secondNumber = Math.floor(Math.random() * 10) + 1;
+        answer = firstNumber * secondNumber;
         const questionText = `You are at position ${userPosition}. ${firstNumber} * ${secondNumber} = ?`;
         document.getElementById("question").textContent = questionText;
         document.getElementById("boxes-container").innerHTML = "";
-    } else {
+    } else if (level === 3) {
+        firstNumber = Math.floor(Math.random() * 10) + 1;
+        secondNumber = Math.floor(Math.random() * 10) + 1;
+        answer = firstNumber * secondNumber;
+        const questionText = `${firstNumber} * ${secondNumber} = ?`;
+        document.getElementById("question").textContent = questionText;
+        document.getElementById("boxes-container").innerHTML = "";
+    } else if (level === 4) {
+        firstNumber = Math.floor(Math.random() * 89) + 11;
+        secondNumber = Math.floor(Math.random() * 10) + 1;
+        answer = firstNumber * secondNumber;
+        const questionText = `You are at position ${userPosition}. ${firstNumber} * ${secondNumber} = ?`;
+        document.getElementById("question").textContent = questionText;
+        document.getElementById("boxes-container").innerHTML = "";
+    } else if (level === 5) {
+        firstNumber = Math.floor(Math.random() * 89) + 11;
+        secondNumber = Math.floor(Math.random() * 10) + 1;
+        answer = firstNumber * secondNumber;
+        const questionText = `${firstNumber} * ${secondNumber} = ?`;
+        document.getElementById("question").textContent = questionText;
+        document.getElementById("boxes-container").innerHTML = "";
+    } else if (level === 6) {
+        firstNumber = Math.floor(Math.random() * 89) + 11;
+        secondNumber = Math.floor(Math.random() * 89) + 11;
+        answer = firstNumber * secondNumber;
+        const questionText = `You are at position ${userPosition}. ${firstNumber} * ${secondNumber} = ?`;
+        document.getElementById("question").textContent = questionText;
+        document.getElementById("boxes-container").innerHTML = "";
+    } else if (level === 7) {
+        firstNumber = Math.floor(Math.random() * 89) + 11;
+        secondNumber = Math.floor(Math.random() * 89) + 11;
+        answer = firstNumber * secondNumber;
         const questionText = `${firstNumber} * ${secondNumber} = ?`;
         document.getElementById("question").textContent = questionText;
         document.getElementById("boxes-container").innerHTML = "";
@@ -71,12 +104,12 @@ function submitAnswer() {
     if (userAnswer === answer) {
         correctAnswersCount++;
         correctAnswers = true;
-        if (questionLimit == counter && level != 2) {
+        if (questionLimit == counter && level != 2 && level != 4 && level != 6) {
             document.getElementById("answer").value = ""; // Clear the answer input
             return endGame();
         }
         document.getElementById("feedback").textContent = "Correct!";
-        if (level === 2) {
+        if (level === 2 || level === 4 || level === 6) {
             document.getElementById("dice-section").style.display = "block"; // Show dice button
         } else {
             nextQuestion();
@@ -84,7 +117,7 @@ function submitAnswer() {
     } else {
         document.getElementById("feedback").textContent = "Incorrect!";
         correctAnswers = false;
-        if (level === 2) {
+        if (level === 2 || level === 4 || level === 6) {
             document.getElementById("dice-section").style.display = "block"; // Show dice button even on wrong answers
         }
     }
